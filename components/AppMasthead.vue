@@ -292,8 +292,56 @@
 </template>
 
 <script>
+import { TimelineMax, TweenMax, Sine } from 'gsap'
 
+  export default {
+    methods: {
+      pathAnim(node) {
+        const path = this.$refs[node],
+        pathlength = path.getTotalLength();
 
+        TweenMax.set(path, {
+          strokeDashoffset: pathlength,
+          strokeDasharray: pathlength
+        })
+
+        TweenMax.to(path, 1.5, {
+          strokeDashoffset: 0
+        })
+      },
+      mastheadAnim() {
+        const tl = new TimelineMax()
+
+        tl.add("start")
+        tl.from("#bird", 3, {
+          x: -700,
+          ease: Sine.easeOut
+        }, "start")
+        tl.to("#plants1", 1, {
+          rotation: 5, 
+          repeat: -1, 
+          yoyo: true,
+          transformOrigin: "50% 100%",
+          ease: Sine.easeInOut
+        }, "start")
+        tl.to("#plants2", 1, {
+          rotation: -5, 
+          repeat: -1, 
+          yoyo: true,
+          transformOrigin: "50% 100%",
+          ease: Sine.easeInOut
+        }, "start")
+
+        return tl
+      }
+    },
+    mounted() {
+      this.mastheadAnim()
+      this.pathAnim('hoop')
+      this.pathAnim('noodle1')
+      this.pathAnim('noodle2')
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
