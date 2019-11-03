@@ -1,8 +1,18 @@
 <template>
   <div>
+    <app-nav/>
     <nuxt />
   </div>
 </template>
+
+<script>
+import AppNav from "~/components/AppNav.vue";
+export default {
+  components: {
+    AppNav
+  }
+};
+</script>
 
 <style>
 html {
@@ -15,8 +25,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  background: #0b0d17;
+  color: #eee;
 }
 
+a, a:visited, a:active {
+  color: white;
+  text-decoration: none;
+}
 *,
 *:before,
 *:after {
